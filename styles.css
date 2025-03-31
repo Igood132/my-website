@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header {
+    background-color: #0078d7;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bio-img {
+    width: 200px;
+    border-radius: 10px;
+}
+
+.bio-text {
+    max-width: 600px;
+    margin-top: 15px;
+}
+
+.footer {
+    background-color: #0078d7;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
