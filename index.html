@@ -12,19 +12,16 @@
       margin: 0;
       padding: 0;
     }
-
     .wrapper {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
-
     h1 {
       text-align: center;
       font-size: 2.5em;
       margin-bottom: 20px;
     }
-
     video {
       display: block;
       margin: 0 auto 10px auto;
@@ -32,17 +29,13 @@
       max-width: 800px;
       border-radius: 10px;
     }
-
-    .invitation {
-      text-align: center;
-      font-size: 1.1em;
-      margin: 20px auto;
+    .invitation, .form-section {
       background-color: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 10px;
+      margin: 20px auto;
       max-width: 800px;
     }
-
     .gallery {
       display: flex;
       justify-content: center;
@@ -50,61 +43,41 @@
       margin: 20px 0;
       flex-wrap: wrap;
     }
-
     .gallery img {
       width: 100%;
       max-width: 200px;
       border-radius: 10px;
     }
-
-    .form-section {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .form-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     .form-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: space-between;
     }
-
     .form-grid > div {
       flex: 1 1 250px;
       display: flex;
       flex-direction: column;
     }
-
     label {
       margin-bottom: 5px;
     }
-
     input, select {
       padding: 10px;
       border: none;
       border-radius: 5px;
       margin-bottom: 10px;
     }
-
     .checkbox {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-top: 10px;
     }
-
     .submit-container {
       text-align: center;
       margin-top: 20px;
     }
-
     .button {
       padding: 10px 25px;
       background-color: #ffcc00;
@@ -115,19 +88,15 @@
       font-size: 1.1em;
       cursor: pointer;
     }
-
     .message {
       margin-top: 10px;
       font-weight: bold;
       text-align: center;
     }
-
     .nav-button {
-      display: block;
       text-align: center;
       margin-top: 30px;
     }
-
     .nav-button a {
       padding: 10px 20px;
       background-color: #fff;
@@ -136,12 +105,10 @@
       border-radius: 5px;
       font-weight: bold;
     }
-
     @media (max-width: 900px) {
       .form-grid {
         flex-direction: column;
       }
-
       .gallery {
         flex-direction: column;
         align-items: center;
@@ -150,9 +117,13 @@
   </style>
 </head>
 <body>
-
   <div class="wrapper">
-    <h1>Doctor Who - Season 5 Trailer</h1>
+    <div style="text-align: right; margin-bottom: 10px;">
+      <img src="F1.jpg" alt="English" style="width: 40px; cursor: pointer;" onclick="setLanguage('en')" />
+      <img src="F2.jpg" alt="Українська" style="width: 40px; cursor: pointer;" onclick="setLanguage('ua')" />
+    </div>
+
+    <h1 data-i18n="title">Doctor Who - Season 5 Trailer</h1>
 
     <video controls>
       <source src="tr.mp4" type="video/mp4" />
@@ -160,7 +131,7 @@
     </video>
 
     <div class="invitation">
-      <p>
+      <p data-i18n="invitation">
         Join us in watching season 5 of "Doctor Who"!<br><br>
         "Doctor Who" is a legendary British sci-fi series about the adventures of a mysterious Time Lord known as the Doctor.<br><br>
         Vote below and let us know which version of the Doctor is your favorite!
@@ -174,22 +145,19 @@
     </div>
 
     <div class="form-section">
-      <h2>Which Doctor do you like the most?</h2>
-
+      <h2 data-i18n="whichDoctor">Which Doctor do you like the most?</h2>
       <form id="surveyForm">
         <div class="form-grid">
           <div>
-            <label for="fullname">Full Name:</label>
+            <label for="fullname" data-i18n="fullName">Full Name:</label>
             <input type="text" id="fullname" name="fullname" />
           </div>
-
           <div>
-            <label for="email">Email Address:</label>
+            <label for="email" data-i18n="email">Email Address:</label>
             <input type="email" id="email" name="email" />
           </div>
-
           <div>
-            <label for="doctorChoice">Choose your favorite Doctor:</label>
+            <label for="doctorChoice" data-i18n="chooseDoctor">Choose your favorite Doctor:</label>
             <select id="doctorChoice" name="doctorChoice">
               <option value="">-- Select Doctor --</option>
               <option>1st Doctor</option>
@@ -208,9 +176,8 @@
               <option>14th Doctor</option>
             </select>
           </div>
-
           <div>
-            <label for="visibility">Do you want your answer to be:</label>
+            <label for="visibility" data-i18n="visibility">Do you want your answer to be:</label>
             <select id="visibility" name="visibility">
               <option value="">-- Select --</option>
               <option>Anonymous</option>
@@ -218,14 +185,12 @@
             </select>
           </div>
         </div>
-
         <div class="checkbox">
-          <label for="ageCheck">I am 13 years old or older</label>
+          <label for="ageCheck" data-i18n="ageCheck">I am 13 years old or older</label>
           <input type="checkbox" id="ageCheck" />
         </div>
-
         <div class="submit-container">
-          <button type="submit" class="button">Submit</button>
+          <button type="submit" class="button" data-i18n="submit">Submit</button>
           <div class="message" id="formMessage"></div>
         </div>
       </form>
@@ -237,42 +202,70 @@
   </div>
 
   <script>
-    document.getElementById('surveyForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('fullname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const isOldEnough = document.getElementById('ageCheck').checked;
-      const doctor = document.getElementById('doctorChoice').value;
-      const visibility = document.getElementById('visibility').value;
-      const messageDiv = document.getElementById('formMessage');
-
-      if (!name || !email || !doctor || !visibility) {
-        messageDiv.textContent = "Please fill out all fields.";
-        messageDiv.style.color = "red";
-        return;
+    const translations = {
+      en: {
+        title: "Doctor Who - Season 5 Trailer",
+        invitation: `Join us in watching season 5 of \"Doctor Who\"!<br><br>
+          \"Doctor Who\" is a legendary British sci-fi series about the adventures of a mysterious Time Lord known as the Doctor.<br><br>
+          Vote below and let us know which version of the Doctor is your favorite!`,
+        whichDoctor: "Which Doctor do you like the most?",
+        fullName: "Full Name:",
+        email: "Email Address:",
+        chooseDoctor: "Choose your favorite Doctor:",
+        visibility: "Do you want your answer to be:",
+        selectDoctor: "-- Select Doctor --",
+        selectVisibility: "-- Select --",
+        anonymous: "Anonymous",
+        public: "Public",
+        ageCheck: "I am 13 years old or older",
+        submit: "Submit"
+      },
+      ua: {
+        title: "Доктор Хто - Трейлер 5 сезону",
+        invitation: `Приєднуйтесь до перегляду 5 сезону серіалу \"Доктор Хто\"!<br><br>
+          \"Доктор Хто\" — легендарний британський науково-фантастичний серіал про пригоди таємничого Повелителя Часу, відомого як Доктор.<br><br>
+          Голосуйте нижче та скажіть нам, яка версія Доктора вам найбільше подобається!`,
+        whichDoctor: "Який Доктор вам найбільше подобається?",
+        fullName: "Повне ім’я:",
+        email: "Електронна адреса:",
+        chooseDoctor: "Обирайте улюбленого Доктора:",
+        visibility: "Вашу відповідь буде видно:",
+        selectDoctor: "-- Виберіть Доктора --",
+        selectVisibility: "-- Виберіть --",
+        anonymous: "Анонімно",
+        public: "Публічно",
+        ageCheck: "Мені 13 років або більше",
+        submit: "Надіслати"
       }
+    };
 
-      if (!email.includes('@')) {
-        messageDiv.textContent = "Invalid email address.";
-        messageDiv.style.color = "red";
-        return;
-      }
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          if (el.tagName === "INPUT" || el.tagName === "SELECT") {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
 
-      if (!isOldEnough) {
-        messageDiv.textContent = "Access denied. You must be 13 or older to vote.";
-        messageDiv.style.color = "red";
-        return;
-      }
-
-      if (name.toLowerCase() === "doctor") {
-        messageDiv.textContent = "Welcome back, Doctor!";
+      const doctorSelect = document.getElementById('doctorChoice');
+      const visibilitySelect = document.getElementById('visibility');
+      if (lang === 'ua') {
+        doctorSelect.options[0].text = translations.ua.selectDoctor;
+        visibilitySelect.options[0].text = translations.ua.selectVisibility;
+        visibilitySelect.options[1].text = translations.ua.anonymous;
+        visibilitySelect.options[2].text = translations.ua.public;
       } else {
-        messageDiv.textContent = "Your response has been submitted.";
+        doctorSelect.options[0].text = translations.en.selectDoctor;
+        visibilitySelect.options[0].text = translations.en.selectVisibility;
+        visibilitySelect.options[1].text = translations.en.anonymous;
+        visibilitySelect.options[2].text = translations.en.public;
       }
-
-      messageDiv.style.color = "lightgreen";
-    });
+      document.querySelector('button[type="submit"]').textContent = translations[lang].submit;
+    }
   </script>
 </body>
 </html>
